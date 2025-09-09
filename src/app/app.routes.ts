@@ -11,7 +11,8 @@ export const routes: Routes = [
         path:"movies",
         component:MovielistComponent
     },{
-        path:"movie/:id",
+        path:"movies/:id",
         component:MovieDetailComponent
-    }
+    },
+    { path: '**', redirectTo: '' },
 ];

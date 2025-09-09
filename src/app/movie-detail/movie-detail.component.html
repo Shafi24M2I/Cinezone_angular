@@ -1,1 +1,28 @@
-<p>movie-detail works!</p>
+<div class="container my-4">
+  <!-- <a routerLink = "/" class="btn btn-link p-0 mb-3">&larr; Retour</a> -->
+   <button (click)="goHome()"> Return à list</button>
+ 
+  @if (loading) {
+  <div class="d-flex justify-content-center my-5">
+    <div class="spinner-border" role="status" aria-label="Chargement"></div>
+  </div>
+  } @if (movie && !loading) {
+  <div class="card shadow-sm">
+    <div class="card-header bg-white">
+      <span class="badge bg-primary me-2">#{{ movie.id }}</span>
+      <!-- <strong>{{movie.title}}</strong> -->
+    </div>
+    <div class="card-body">
+      <h5 class="card-title text-primary">{{ movie.title }}</h5>
+      <p class="card-text mb-0">{{ movie.director }}</p>
+      <p class="card-text mb-0">{{ movie.rating }}</p>
+      <p class="card-text mb-0">{{ movie.release_year }}</p>
+     
+    </div>
+    <div class="card-footer text-muted small">
+      @if (movie.category_id) { le film est de catégorie  {{ movie.category_id }} }
+    </div>
+  </div>
+  }
+</div>
+ 

@@ -32,12 +32,8 @@ export class MoviesService {   // On déclare notre service "MoviesService"
       .get<Movie[]>(`${this.baseUrl}/movies`)
 
   }
-//  getMovie(id: number): Observable<Movie> {
-//   return this.http.get<Movie>(`/api/movies/${id}`);
-// }
-
-// getMovie(id: number): Observable<Movie> {
-//   return this.http.get<Movie>(`${this.baseUrl}/movies/${id}`);
-// }
+ getMovie(id: number): Observable<Movie> {
+   return this.http.get<Movie>(`${this.baseUrl}/movies/${id}`);
+ }
   
 }
