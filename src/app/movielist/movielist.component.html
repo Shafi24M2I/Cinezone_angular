@@ -1,0 +1,27 @@
+@if (loading) {
+  <div>Données en cours de chargement...</div>
+} @else {
+  @if (!movies || movies.length === 0) {
+    <div class="alert alert-warning">
+      Aucun film disponible.
+    </div>
+  } @else {
+    <div class="container mt-4">
+      <h2 class="mb-4">Liste des films</h2>
+      <ul class="list-group">
+        @for (movie of movies; track movie.title) {
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span>{{ movie.title }}</span>
+
+            <span class="badge bg-primary rounded-pill">{{ movie.release_year }}</span>
+            <!-- <a [routerLink]="['/movies', movie.id]" class="btn btn-sm btn-primary m-1"> Voir</a> -->
+          </li>
+        } @empty {
+          <li class="list-group-item">
+            Aucun film disponible.
+          </li>
+        }
+      </ul>
+    </div>
+  }
+}
