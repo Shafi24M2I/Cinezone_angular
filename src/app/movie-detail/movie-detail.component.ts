@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router, RouterLink, RouterModule } from '@angular/router';
 import { MoviesService } from '../common/movies.service';
 import { Movie } from '../common/movie.interface';
 import { ToastrService } from 'ngx-toastr';
@@ -7,7 +7,8 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-movie-detail',
   templateUrl: './movie-detail.component.html',
-  styleUrls: ['./movie-detail.component.css']
+  styleUrls: ['./movie-detail.component.css'],
+  imports: [RouterLink , RouterModule]
 })
 export class MovieDetailComponent implements OnInit {
 
@@ -51,5 +52,18 @@ export class MovieDetailComponent implements OnInit {
   }
   goHome():void {
     this.router.navigate(['/movies']);
+  }
+  deleteMovie(id: number):void {
+    if (confirm('confirmez vous la suppression ')){
+      this.moviesService.deleteMovie(id).subscribe({
+        next:() =>{
+  
+          this.toastr.success('La suppression a été effectuée');
+        },
+        error: ()=> {
+          this.toastr.error("erreur durant la suppression de la movie .");
+        },
+      });
+    }
   }
 }

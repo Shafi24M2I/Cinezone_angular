@@ -23,7 +23,7 @@ export class MoviesService {   // On déclare notre service "MoviesService"
   private baseUrl = 'http://localhost:3000';
 
   // Constructeur qui injecte HttpClient (nécessaire pour faire des requêtes HTTP)
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient ) {}
 
   // Méthode publique qui retourne un Observable de liste de films (Movie[])
   getMovies(): Observable<Movie[]> {
@@ -32,8 +32,18 @@ export class MoviesService {   // On déclare notre service "MoviesService"
       .get<Movie[]>(`${this.baseUrl}/movies`)
 
   }
- getMovie(id: number): Observable<Movie> {
-   return this.http.get<Movie>(`${this.baseUrl}/movies/${id}`);
- }
-  
+  getMovie(id: number): Observable<Movie> {
+    return this.http.get<Movie>(`${this.baseUrl}/movies/${id}`);
+  }
+
+  createMovie(movie: Movie): Observable<Movie> {
+    return this.http.post<Movie>(`${this.baseUrl}/movies`, movie);
+  }
+
+  updateMovie(id: number, movie: Movie): Observable<Movie> {
+    return this.http.put<Movie>(`${this.baseUrl}/movies/${id}`, movie);
+  }
+  deleteMovie(id: number): Observable <void>{
+    return this.http.delete<void>(`${this.baseUrl}/movies/${id}`)
+  }
 }

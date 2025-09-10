@@ -2,10 +2,11 @@
 export interface Movie {
     id?: number;
   title: string;    // titre du film
-  director?: string ;
+  director: string ;
   rating?: number
-  release_year?: number;     // année de sortie
+  release_year: number;     // année de sortie
   category_id?:number;
+  
 
 
 }

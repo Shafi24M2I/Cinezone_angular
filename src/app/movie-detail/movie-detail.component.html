@@ -1,28 +1,40 @@
-<div class="container my-4">
-  <!-- <a routerLink = "/" class="btn btn-link p-0 mb-3">&larr; Retour</a> -->
-   <button (click)="goHome()"> Return à list</button>
- 
+<div class="container my-5">
+  <button (click)="goHome()" class="btn btn-outline-secondary mb-4">
+    &larr; Retour à la liste
+  </button>
+
   @if (loading) {
-  <div class="d-flex justify-content-center my-5">
-    <div class="spinner-border" role="status" aria-label="Chargement"></div>
-  </div>
+    <div class="d-flex justify-content-center my-5">
+      <div class="spinner-border text-primary" role="status" aria-label="Chargement"></div>
+    </div>
   } @if (movie && !loading) {
-  <div class="card shadow-sm">
-    <div class="card-header bg-white">
-      <span class="badge bg-primary me-2">#{{ movie.id }}</span>
-      <!-- <strong>{{movie.title}}</strong> -->
+    <div class="card shadow-lg border-0">
+      <div class="row g-0">
+        <div class="col-md-8">
+          <div class="card-body">
+            <h3 class="card-title text-primary">{{ movie.title }}</h3>
+            <p class="card-text"><strong>Réalisateur :</strong> {{ movie.director }}</p>
+            <p class="card-text"><strong>Note :</strong> ⭐ {{ movie.rating }}/10</p>
+            <p class="card-text"><strong>Année de sortie :</strong> {{ movie.release_year }}</p>
+
+            @if (movie.category_id) {
+              <p class="card-text"><strong>Catégorie :</strong> {{ movie.category_id }}</p>
+            }
+
+            <div class="mt-4 d-flex gap-2 flex-wrap">
+              
+              
+              <a [routerLink]="['/movies', movie.id , 'edit']" class="btn btn-outline-primary btn-sm">
+                ✏️ Modifier
+              </a> 
+              <button (click)="deleteMovie(movie.id!)" class="btn btn-outline-danger btn-sm">
+                  <i class="bi bi-trash"></i> Supprimer
+                </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="card-body">
-      <h5 class="card-title text-primary">{{ movie.title }}</h5>
-      <p class="card-text mb-0">{{ movie.director }}</p>
-      <p class="card-text mb-0">{{ movie.rating }}</p>
-      <p class="card-text mb-0">{{ movie.release_year }}</p>
-     
-    </div>
-    <div class="card-footer text-muted small">
-      @if (movie.category_id) { le film est de catégorie  {{ movie.category_id }} }
-    </div>
-  </div>
   }
 </div>
- 
+

@@ -1,1 +1,109 @@
-<p>movie-from works!</p>
+<div class="container mt-4">
+  <h2 class="mb-4" style="align-content: center;
+  justify-content: center;
+  display: flex;">
+    {{ isEditing ? "Modification d'un article" : "Création d'un Movies" }}
+  </h2>
+
+  <form
+    class="row g-3"
+    #articleForm="ngForm"
+    novalidate
+    (ngSubmit)="articleForm.valid && onSubmit()"
+  >
+    <!-- Title -->
+    <div class="col">
+      <label for="title" class="form-label">Titre</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="movie.title"
+        name="title"
+        id="title"
+        #titleCtrl="ngModel"
+        required
+      />
+      @if(titleCtrl.errors && (titleCtrl.touched || articleForm.submitted)) {
+        <div class="alert alert-danger">Le titre est requis</div>
+      }
+    </div>
+
+    <!-- Director -->
+    <div class="col">
+      <label for="director" class="form-label">Réalisateur</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="movie.director"
+        name="director"
+        id="director"
+        #directorCtrl="ngModel"
+        required
+      />
+      @if(directorCtrl.errors && (directorCtrl.touched || articleForm.submitted)) {
+        <div class="alert alert-danger">Le réalisateur est requis</div>
+      }
+    </div>
+
+    <!-- Release Year -->
+    <div class="col">
+      <label for="release_year" class="form-label">Année de sortie</label>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="movie.release_year"
+        name="release_year"
+        id="release_year"
+        #releaseYearCtrl="ngModel"
+        required
+      />
+      @if(releaseYearCtrl.errors && (releaseYearCtrl.touched || articleForm.submitted)) {
+        <div class="alert alert-danger">L'année de sortie est requise</div>
+      }
+    </div>
+
+    <!-- Category -->
+    <div class="col">
+      <label for="category_id" class="form-label">Catégorie</label>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="movie.category_id"
+        name="category_id"
+        id="category_id"
+        #categoryIdCtrl="ngModel"
+        required
+      />
+      @if(categoryIdCtrl.errors && (categoryIdCtrl.touched || articleForm.submitted)) {
+        <div class="alert alert-danger">La catégorie est requise</div>
+      }
+    </div>
+
+    <!-- Rating -->
+    <div class="col">
+      <label for="rating" class="form-label">Note</label>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="movie.rating"
+        name="rating"
+        id="rating"
+        #ratingCtrl="ngModel"
+        required
+      />
+      @if(ratingCtrl.errors && (ratingCtrl.touched || articleForm.submitted)) {
+        <div class="alert alert-danger">La note est requise</div>
+      }
+    </div>
+
+    <!-- Actions -->
+    <div class="col-12 " style="align-content: center;
+  justify-content: center;
+  display: flex; padding-top: 30px;" >
+      <button class="btn btn-primary m-1" type="submit">
+        {{ isEditing ? 'Modifier' : 'Créer' }}
+      </button>
+      <a [routerLink]="['/movies', movie.id ]" class="btn btn-secondary m-1">Annuler</a>
+    </div>
+  </form>
+</div>

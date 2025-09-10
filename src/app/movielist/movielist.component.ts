@@ -1,21 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from '../common/movies.service';
 import { Movie } from '../common/movie.interface';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
  
 @Component({
   selector: 'app-movielist',
   templateUrl: './movielist.component.html',
   styleUrls: ['./movielist.component.css'],
-  imports: [RouterLink]
+  imports: [RouterLink , RouterModule]
  
 })
 export class MovielistComponent implements OnInit {
 loading = true;
   movies: Movie[] = [];
 
-  constructor(private moviesService: MoviesService , private router:Router  ) {}
+  constructor(private moviesService: MoviesService ,
+    private toastr : ToastrService
+    ) {}
 
   ngOnInit(): void {
     // On appelle le service pour récupérer les films
@@ -29,5 +32,18 @@ loading = true;
         this.loading = false;
       },
     });
+  }
+  deleteMovie(id: number):void {
+    if (confirm('confirmez vous la suppression ')){
+      this.moviesService.deleteMovie(id).subscribe({
+        next:() =>{
+  
+          this.toastr.success('La suppression a été effectuée');
+        },
+        error: ()=> {
+          this.toastr.error("erreur durant la suppression de la movie .");
+        },
+      });
+    }
   }
 }
