@@ -22,6 +22,7 @@
         id="title"
         #titleCtrl="ngModel"
         required
+        placeholder="title"
       />
       @if(titleCtrl.errors && (titleCtrl.touched || articleForm.submitted)) {
         <div class="alert alert-danger">Le titre est requis</div>
@@ -39,6 +40,7 @@
         id="director"
         #directorCtrl="ngModel"
         required
+        placeholder="réalisateur"
       />
       @if(directorCtrl.errors && (directorCtrl.touched || articleForm.submitted)) {
         <div class="alert alert-danger">Le réalisateur est requis</div>
@@ -56,6 +58,7 @@
         id="release_year"
         #releaseYearCtrl="ngModel"
         required
+        placeholder="release_year"
       />
       @if(releaseYearCtrl.errors && (releaseYearCtrl.touched || articleForm.submitted)) {
         <div class="alert alert-danger">L'année de sortie est requise</div>
@@ -73,6 +76,7 @@
         id="category_id"
         #categoryIdCtrl="ngModel"
         required
+        placeholder="catégorie"
       />
       @if(categoryIdCtrl.errors && (categoryIdCtrl.touched || articleForm.submitted)) {
         <div class="alert alert-danger">La catégorie est requise</div>
@@ -90,6 +94,7 @@
         id="rating"
         #ratingCtrl="ngModel"
         required
+        placeholder="note"
       />
       @if(ratingCtrl.errors && (ratingCtrl.touched || articleForm.submitted)) {
         <div class="alert alert-danger">La note est requise</div>

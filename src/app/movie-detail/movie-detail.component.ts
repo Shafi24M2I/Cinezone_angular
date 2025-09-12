@@ -57,6 +57,8 @@ export class MovieDetailComponent implements OnInit {
     if (confirm('confirmez vous la suppression ')){
       this.moviesService.deleteMovie(id).subscribe({
         next:() =>{
+         //  alert('La suppression a été effectuée')
+          this.router.navigate(['/movies']);
   
           this.toastr.success('La suppression a été effectuée');
         },

@@ -1,0 +1,76 @@
+
+      <div class="container mt-4">
+        <!-- je mettre la ngSubmit pour la declanche avec class registercomponent  -->
+  <form
+    class="row g-3"
+    #articleForm="ngForm"
+    novalidate
+    (ngSubmit)="articleForm.valid && login()"
+  >
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+      
+      <input
+        type="email"
+        class="form-control"
+        [(ngModel)]="loginU.email"
+        name="email"
+        id="exampleFormControlInput1"
+        #emailCtrl="ngModel"
+        placeholder="name@example.com"
+        required
+      />
+      @if(emailCtrl.errors && (emailCtrl.touched || articleForm.submitted)) {
+        <div class="alert alert-danger">L'email est requis</div>
+      }
+    </div>
+
+    
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        [(ngModel)]="loginU.password"
+        name="password"
+        id="password"
+        #passwordCtrl="ngModel"
+        required
+        minlength="10"
+        placeholder="password"
+      />
+    
+      @if(passwordCtrl.errors && (passwordCtrl.touched || articleForm.submitted)) {
+        <div class="alert alert-danger">La password est requise</div>
+      }
+
+    </div>
+
+
+    <!-- <div class="mb-3">
+      <label for="password" class="form-label"> confirm Password</label>
+      <input
+        type="password"
+        class="form-control"
+        [(ngModel)]="loginU.password"
+        name="password"
+        id="password"
+        #passwordCtrl="ngModel"
+        required
+        minlength="10"
+        placeholder="confirm password"
+      />
+    
+      @if(passwordCtrl.errors && (passwordCtrl.touched || articleForm.submitted)) {
+        <div class="alert alert-danger">La password est requise</div>
+      }
+
+    </div> -->
+    <div class="col-12 " style="align-content: center;
+  justify-content: center;
+  display: flex; padding-top: 30px;" >
+      <button class="btn btn-primary m-1" type="submit">
+        login
+      </button>
+      <!-- <a [routerLink]="['/users', user.id ]" class="btn btn-secondary m-1">Annuler</a> -->
+    </div>

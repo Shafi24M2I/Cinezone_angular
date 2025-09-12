@@ -18,8 +18,9 @@
             <p class="card-text"><strong>Année de sortie :</strong> {{ movie.release_year }}</p>
 
             @if (movie.category_id) {
-              <p class="card-text"><strong>Catégorie :</strong> {{ movie.category_id }}</p>
-            }
+              <p class="card-text"><strong>Catégorie :</strong> @if( movie.category_id === 1){
+              Science Fiction  } @else { Drama}</p>
+              }
 
             <div class="mt-4 d-flex gap-2 flex-wrap">
               
